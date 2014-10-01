@@ -16,6 +16,14 @@ $gallery-padding:   0.5rem;
   padding-left: $gallery-padding;
 }
 
+.gallery--link {
+  display: block;
+
+  img {
+    width: 100%;
+  }
+}
+
 .column-whole   { width: (100% / 1); }
 .column-half    { width: (100% / 2); }
 .column-third   { width: (100% / 3); }

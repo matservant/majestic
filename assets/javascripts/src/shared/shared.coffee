@@ -38,7 +38,7 @@ $(document).ready ->
         prev: '<div id="fluidbox-btn-prev" class="gallery--nav gallery--prev"></div>'
   )
 
-  # Insert an AVG icon of the NPL logo in place of the text
+  # Insert an SVG icon of the NPL logo in place of the text
   # ----------------------------------------------------------------------------
 
   nplItem = $('.nav-primary .nav--item:last-child a')
@@ -60,3 +60,23 @@ $(document).ready ->
           scrollTop: target.offset().top
         , 500
         false
+
+  # Animate stuff if visible
+  # ----------------------------------------------------------------------------
+
+  $.fn.visible = (partial) ->
+    $t = $(this)
+    $w = $(window)
+    viewTop = $w.scrollTop()
+    viewBottom = viewTop + $w.height()
+    _top = $t.offset().top
+    _bottom = _top + $t.height()
+    compareTop = (if partial is true then _bottom else _top)
+    compareBottom = (if partial is true then _top else _bottom)
+    (compareBottom <= viewBottom) and (compareTop >= viewTop)
+
+  # Show and hide animations on window scroll
+  $(window).scroll (event) ->
+    $("img.animated").each (i, el) ->
+      el = $(el)
+      el.addClass "fadeInUp"  if el.visible(true)

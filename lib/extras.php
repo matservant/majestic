@@ -65,6 +65,7 @@ function majestic_gallery($gallery, $grid_layout, $gallery_rel = 'gallery-a') {
             href="<?php echo $image['url'] ?>"
             title="<?php echo $image['title'] ?>">
             <img
+              class="animated delay-<?php echo $i ?>"
               src="<?php echo $image['sizes'][$image_grid[$i]['size']] ?>"
               alt="<?php echo $image['title'] ?>"
               title="<?php echo $image['title'] ?>">

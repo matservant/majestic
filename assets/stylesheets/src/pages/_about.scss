@@ -4,11 +4,12 @@
 
 .event-list {
   @extend .list-plain;
-  @extend .list-inline;
   text-align: center;
 }
 
 .event-list--item {
+  display: inline-block;
+
   &:after {
     color: $gold-light;
     content: "+";
