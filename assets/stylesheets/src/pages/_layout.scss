@@ -89,7 +89,8 @@ $masthead-color:    $color-secondary;
 }
 
 .page-title {
-  @include shadow-letters(darken($masthead-color, 20%), left, 6px);
+  @include shadow-letters(darken($masthead-color, 24%), left, 6px);
+
   color: $white;
   margin: 0;
   line-height: 1;

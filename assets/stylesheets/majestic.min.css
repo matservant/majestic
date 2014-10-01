@@ -226,6 +226,34 @@ body {
     -webkit-animation-duration: 2s;
     animation-duration: 2s; }
 
+.delay-0 {
+  -webkit-animation-delay: 0ms;
+  animation-delay: 0ms; }
+
+.delay-1 {
+  -webkit-animation-delay: 50ms;
+  animation-delay: 50ms; }
+
+.delay-2 {
+  -webkit-animation-delay: 100ms;
+  animation-delay: 100ms; }
+
+.delay-3 {
+  -webkit-animation-delay: 150ms;
+  animation-delay: 150ms; }
+
+.delay-4 {
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms; }
+
+.delay-5 {
+  -webkit-animation-delay: 250ms;
+  animation-delay: 250ms; }
+
+.delay-6 {
+  -webkit-animation-delay: 300ms;
+  animation-delay: 300ms; }
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0; }
@@ -543,11 +571,11 @@ ul, ol {
   ul ul, ul ol, ol ul, ol ol {
     margin-bottom: 0; }
 
-.list-plain, .list-inline, .list-inline-center, .event-list, .gallery, .event-list {
+.list-plain, .list-inline, .list-inline-center, .gallery, .event-list {
   list-style: none;
   padding-left: 0; }
 
-.list-inline li, .list-inline .list-inline-center, .list-inline .event-list {
+.list-inline li, .list-inline .list-inline-center {
   display: inline-block; }
 
 .list-inline-center {
@@ -785,6 +813,11 @@ abbr, acronym, blockquote, code, dir, kbd, listing, plaintext, q, samp, tt, var,
   float: left;
   margin-bottom: 0.5rem;
   padding-left: 0.5rem; }
+
+.gallery--link {
+  display: block; }
+  .gallery--link img {
+    width: 100%; }
 
 .column-whole {
   width: 100%; }
@@ -1087,7 +1120,7 @@ img[src$=".svg"] {
   width: 100%; }
 
 .page-title {
-  text-shadow: -6px 6px 0 #655339, -5px 5px 0 #655339, -4px 4px 0 #655339, -3px 3px 0 #655339, -2px 2px 0 #655339, -1px 1px 0 #655339, -0px 0px 0 #655339;
+  text-shadow: -6px 6px 0 #584832, -5px 5px 0 #584832, -4px 4px 0 #584832, -3px 3px 0 #584832, -2px 2px 0 #584832, -1px 1px 0 #584832, -0px 0px 0 #584832;
   color: white;
   margin: 0;
   line-height: 1; }
@@ -1152,13 +1185,15 @@ img[src$=".svg"] {
 .event-list {
   text-align: center; }
 
-.event-list--item:after {
-  color: #e3dbce;
-  content: "+";
-  display: inline-block;
-  padding: 0 0.75em; }
-.event-list--item:last-child:after {
-  content: ""; }
+.event-list--item {
+  display: inline-block; }
+  .event-list--item:after {
+    color: #e3dbce;
+    content: "+";
+    display: inline-block;
+    padding: 0 0.75em; }
+  .event-list--item:last-child:after {
+    content: ""; }
 
 .rates--subheading {
   color: #b3b3b3;

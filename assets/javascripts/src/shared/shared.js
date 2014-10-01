@@ -37,7 +37,7 @@
     nplSVG = '<svg class="svg-image svg-address"><use xlink:href="/wp-content/themes/majestic/assets/images/sprite.min.svg#npl"></use></svg>';
     nplItem.html(nplSVG);
     subnavLink = $(".masthead a");
-    return subnavLink.click(function() {
+    subnavLink.click(function() {
       var target;
       target = void 0;
       if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") && location.hostname === this.hostname) {
@@ -50,6 +50,26 @@
           return false;
         }
       }
+    });
+    $.fn.visible = function(partial) {
+      var $t, $w, compareBottom, compareTop, viewBottom, viewTop, _bottom, _top;
+      $t = $(this);
+      $w = $(window);
+      viewTop = $w.scrollTop();
+      viewBottom = viewTop + $w.height();
+      _top = $t.offset().top;
+      _bottom = _top + $t.height();
+      compareTop = (partial === true ? _bottom : _top);
+      compareBottom = (partial === true ? _top : _bottom);
+      return (compareBottom <= viewBottom) && (compareTop >= viewTop);
+    };
+    return $(window).scroll(function(event) {
+      return $("img.animated").each(function(i, el) {
+        el = $(el);
+        if (el.visible(true)) {
+          return el.addClass("fadeInUp");
+        }
+      });
     });
   });
 
