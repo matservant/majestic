@@ -1,0 +1,214 @@
+// ============================================================================
+// Calendar
+// ============================================================================
+
+// Variables
+// ----------------------------------------------------------------------------
+
+$calendar-border:     1px solid $gray-light;
+$cell-padding:        .25rem;
+
+// Base styles
+// ----------------------------------------------------------------------------
+
+.calendar {
+  .container {
+    transition: 2s linear all;
+  }
+}
+
+.google-calendar,
+.fc-calendar,
+.fc-body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.google-calendar {
+  animation-delay: 250;
+  box-shadow: 0 1px 6px rgba(black, .15);
+  border-radius: $border-radius-lg;
+  margin-bottom: $leading * 2;
+  position: relative;
+}
+
+// Header
+// ----------------------------------------------------------------------------
+
+.calendar-title,
+.calendar-nav {
+  line-height: $leading * 3;
+}
+
+.calendar-title {
+  background-color: $gray-lighter;
+  margin: 0;
+  text-align: center;
+}
+
+.calendar-nav {
+  .nav-item {
+    border: none;
+    font-family: "Courier New", "Courier", mono;
+    font-size: 2em;
+    position: absolute;
+    top: 0;
+    width: 50%;
+
+    &:hover {
+      border-color: $green;
+    }
+  }
+
+  .prev {
+    left: 0;
+    padding-left: 10%;
+    text-align: left;
+  }
+
+  .next {
+    padding-right: 10%;
+    right: 0;
+    text-align: right;
+  }
+}
+
+// Content
+// ----------------------------------------------------------------------------
+
+// Week header
+.fc-head {
+  border-bottom: 2px solid $gold-light;
+  overflow: hidden;
+}
+
+// Days of the week
+.fc-head div,
+.fc-weekday {
+  @extend %upper;
+  color: $gold;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  line-height: $line-height-base * 1.5;
+  padding-right: $cell-padding;
+}
+
+// Cells
+// ----------------------------------------------------------------------------
+
+.fc-row,
+.fc-head {
+  overflow: hidden;
+
+  > div {
+    float: left;
+    padding: 0 $cell-padding;
+    width: (100 / 7 * 1%);
+  }
+
+  > div:last-child {
+    float: right;
+  }
+}
+
+.fc-row {
+  > div {
+    height: 6rem;
+    border-bottom: $calendar-border;
+    border-right: 1px solid $gray-lighter;
+  }
+
+  > .fc-content {
+    // background: $green-light;
+  }
+}
+
+.fc-date {
+  color: $gray-dark;
+  display: block;
+  font-style: $font-size-sm;
+  line-height: 1;
+}
+
+.fc-weekday {
+  display: none;
+}
+
+.booked {
+  @extend %upper;
+  background: $color-primary;
+  color: $white;
+  display: block;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  line-height: 1.2;
+  margin: $cell-padding ($cell-padding * -1) 0;
+  padding: $cell-padding ($cell-padding * 1.5);
+}
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include below($screen-md) {
+
+  .google-calendar h2 {
+    font-size: $font-size-lg;
+  }
+
+  // Hide the main weekday header row plus empty cells
+  .fc-row > div:empty,
+  .fc-head {
+    display: none;
+  }
+
+  .fc-row {
+    border-bottom: 4px solid $gold-light;
+
+    &:last-child {
+      border: none;
+    }
+
+    > div {
+      @include fill-parent;
+      height: auto;
+      border-top: $calendar-border;
+
+      // All the elements in the cell
+      > * {
+        display: block;
+        float: left;
+        line-height: $leading * 1.5;
+        padding: 0 .75em 0 0;
+      }
+    }
+
+    > .fc-content {
+      border-bottom: none;
+      border-top: darken($green-light, 15%);
+    }
+  }
+
+  .fc-date {
+    text-align: right;
+    width: 2em;
+  }
+
+  .booked {
+    margin: 0;
+  }
+}
+
+// Footer
+// ----------------------------------------------------------------------------
+
+.calendar--footnote {
+  display: block;
+  margin-bottom: ($leading * 2);
+  text-align: center;
+
+  .booked {
+    display: inline-block;
+    margin: 0 5px;
+  }
+}

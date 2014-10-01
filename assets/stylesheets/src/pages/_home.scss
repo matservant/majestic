@@ -1,0 +1,21 @@
+// ============================================================================
+// Home
+// ============================================================================
+
+.home {
+  .page-title {
+    margin: 0 auto;
+
+    svg {
+      display: block;
+      margin: 0 auto;
+      height: 145px;
+      fill: white;
+      width: 350px;
+    }
+  }
+
+  p:first-child {
+    @extend %drop-cap;
+  }
+}

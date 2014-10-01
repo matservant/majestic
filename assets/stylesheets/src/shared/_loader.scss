@@ -1,0 +1,30 @@
+// ============================================================================
+// Loaders
+// ============================================================================
+
+$loader-size: 5em;
+
+.loader {
+  animation: loader 0.5s infinite linear;
+  border-bottom: 1em solid rgba(white, 0.2);
+  border-left:   1em solid white;
+  border-right:  1em solid rgba(white, 0.2);
+  border-top:    1em solid rgba(white, 0.2);
+  font-size: 10px;
+  position: relative;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: $loader-size;
+  height: $loader-size;
+}
+
+// Keyframes
+// ----------------------------------------------------------------------------
+
+@keyframes loader {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

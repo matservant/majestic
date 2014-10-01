@@ -1,0 +1,126 @@
+// ============================================================================
+// Contact page styles
+// ============================================================================
+
+.contact {
+  .lead {
+    @extend %drop-cap;
+  }
+}
+
+// Contact Info
+.contact-info {
+  @include row;
+  margin-bottom: $leading * 2;
+
+  .svg-image {
+    display: block;
+    height: $icon-size;
+    fill: $text-color;
+    float: left;
+    margin: 2px 0.5em 0 0;
+    width: $icon-size;
+  }
+
+  .label {
+    @include span-columns(4);
+    @extend %upper;
+    margin: 0 0 ($leading / 2);
+  }
+
+  .value {
+    @include span-columns(8);
+    @include omega();
+    margin: 0 0 ($leading / 2);
+    text-align: left;
+  }
+
+  // Add a comma when the address is all on the same line
+  .address--street:after {
+    content: ",";
+    display: inline-block;
+  }
+
+  @include media($screen-sm-down) {
+    .label,
+    .value {
+      @include fill-parent;
+    }
+
+    .label {
+      margin: 0;
+    }
+
+    .value {
+      margin-left: $icon-size;
+      padding-left: 0.5em;
+    }
+
+    .address--street,
+    .address--city-state {
+      display: block;
+    }
+
+    // Hide the comma with a stacked address
+    .address--street:after {
+      display: none;
+    }
+  }
+}
+
+// Map
+// ----------------------------------------------------------------------------
+
+// Container
+.map {
+  position: relative;
+}
+
+.map__container {
+  border-radius: $border-radius-base;
+  height: 920px * (9/16); // keeps this in a 16:9 ratio
+  margin-bottom: $leading * 2;
+  max-width: 100%;
+  position: relative;
+
+  @include media($screen-md-down) {
+    height: 640px * (9/16);
+  }
+}
+
+// Zoom controls
+$zoom-btn-size:   32px;
+$zoom-icon-size:  16px;
+
+.map__zoom-control {
+  @extend %sprite-bg;
+  background-color: $red;
+  cursor: pointer;
+  height: $zoom-btn-size;
+  margin-left: 2em;
+  padding: (($zoom-btn-size - $zoom-icon-size) / 2);
+  transition: background-color $timing-base $easing-base;
+  width: $zoom-btn-size;
+
+  &:hover {
+    background-color: darken($red, 10%);
+  }
+
+  .svg-image {
+    height: $zoom-icon-size;
+    width: $zoom-icon-size;
+    fill: white;
+    display: block;
+  }
+}
+
+.map__zoom-in {
+  background-position: -161px -179px;
+  border-radius: $border-radius-base $border-radius-base 0 0;
+  margin-bottom: 1px;
+}
+
+.map__zoom-out {
+  background-position: -197px -179px;
+  border-radius: 0 0 $border-radius-base $border-radius-base;
+}

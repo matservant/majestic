@@ -1,0 +1,19 @@
+// ============================================================================
+// Neon Parrot Lounge styles
+// ============================================================================
+
+.neon-parrot-lounge {
+  .masthead {
+    background: {
+      attachment: scroll;
+      color: $black;
+      image: url("../images/npl-bg.jpg");
+      position: center top;
+      size: cover;
+    }
+  }
+
+  .page-title {
+    @include shadow-letters($black, left, 6px);
+  }
+}

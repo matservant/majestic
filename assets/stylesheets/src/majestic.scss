@@ -1,0 +1,51 @@
+
+//  '||''|.  '||            .
+//   ||   ||  ||   ....   .||.    ....
+//   ||...|'  ||  '' .||   ||   .|...||
+//   ||       ||  .|' ||   ||   ||
+//  .||.     .||. '|..'|'  '|.'  '|...'
+
+// Title:      Plate
+// Version:    0.0.1
+// Author:     Andy Smith
+// Source:     http://github/com/andyra/proto
+
+// This is a manifest file used to import stylesheet partials. To add new
+// styles, create a new `.scss` file and import it below. All partials
+// should begin with an underscore.
+
+// Settings
+// ----------------------------------------------------------------------------
+
+@import "settings/settings";
+
+// Shared styles
+// ----------------------------------------------------------------------------
+
+// Base
+@import "shared/normalize";
+@import "shared/helpers";
+@import "shared/base";
+@import "shared/animations";
+@import "shared/type";
+
+// Shared
+@import "shared/buttons";
+@import "shared/gallery";
+@import "shared/icons";
+@import "shared/images";
+@import "shared/fluidbox";
+@import "shared/loader";
+@import "shared/navs";
+@import "shared/notifications";
+
+// Pages
+// ----------------------------------------------------------------------------
+
+@import "pages/layout";
+@import "pages/about";
+@import "pages/booking";
+@import "pages/calendar";
+@import "pages/contact";
+@import "pages/home";
+@import "pages/npl";

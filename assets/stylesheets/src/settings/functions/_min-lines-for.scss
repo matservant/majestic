@@ -1,0 +1,21 @@
+// ============================================================================
+// Min Lines For...
+// ============================================================================
+
+// Calculate the minimum number of rhythm units needed to contain the font-size.
+$min-line-padding: 2px;
+$round-to-half-line: true;
+
+@function min-lines-for($font-size) {
+  $font-size: strip-unit($font-size);
+  $leading-val: strip-unit($leading);
+
+  $lines: if($round-to-half-line,
+             ceil(2 * $font-size / $leading-val) / 2,
+             ceil($font-size / $leading-val));
+
+  @if $lines * $leading-val - $font-size < $min-line-padding * 2 {
+    $lines: $lines + if($round-to-half-line, 0.5, 1);
+  }
+  @return $lines;
+}

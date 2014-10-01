@@ -1,0 +1,22 @@
+// ============================================================================
+// Leading
+// ============================================================================
+
+// Calculate leading to create a consistent vertical rhythm.
+// Returns value in rems.
+
+@function leading($lines: 1, $font-size: $font-size-base, $offset: 0) {
+  // Since we might be dealing with different units here (the offset might be
+  // in px, for instance), we need to make sure the calculations are all made
+  // from the same value.
+  $leading-val: u($leading, rem);
+  $font-size: u($font-size, rem);
+  $font-size-base: u($font-size-base, rem);
+  $offset: u($offset, rem);
+
+  // Calculate the leading – the offset
+  $leading-val: $font-size-base * ($lines * $leading-val - $offset) / $font-size;
+
+  // Return value in rems
+  @return $leading-val;
+}

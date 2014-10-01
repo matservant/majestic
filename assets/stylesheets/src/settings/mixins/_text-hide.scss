@@ -1,0 +1,15 @@
+// ============================================================================
+// Text Hide
+// ============================================================================
+
+// CSS image replacement
+
+@mixin text-hide() {
+  background-color: transparent;
+  border: 0;
+  color: transparent;
+  font: #{0/0} a;
+  overflow: hidden;
+  text-shadow: none;
+  *text-indent: -9999px; // IE 6/7 fallback
+}

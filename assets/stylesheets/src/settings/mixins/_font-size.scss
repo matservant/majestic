@@ -1,0 +1,16 @@
+// ============================================================================
+// Font Size
+// ============================================================================
+
+// Quickly generate a font size and line-height based on a vertical rhythm. The
+// number of lines is set automatically for you appropriate to the font-size,
+// although you can pass in a custom number of lines if you like.
+// $font-size must be in px.
+
+// @include font-size($font-size-large);
+// @include font-size($font-size-small, 3); (line-height will take up 3 units)
+
+@mixin font-size($font-size, $lines: min-lines-for($font-size)) {
+  font-size: $font-size;
+  line-height: strip-unit(leading($lines, $font-size));
+}

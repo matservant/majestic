@@ -1,0 +1,22 @@
+// ============================================================================
+// Gallery
+// ============================================================================
+
+$gallery-padding:   0.5rem;
+
+.gallery {
+  @extend .list-plain;
+  @extend %clearfix;
+  margin: $leading 0 $leading ($gallery-padding * -1);
+}
+
+.gallery--item {
+  float: left;
+  margin-bottom: $gallery-padding;
+  padding-left: $gallery-padding;
+}
+
+.column-whole   { width: (100% / 1); }
+.column-half    { width: (100% / 2); }
+.column-third   { width: (100% / 3); }
+.column-fourth  { width: (100% / 4); }

@@ -1,0 +1,16 @@
+// ============================================================================
+// Notifications
+// ============================================================================
+
+.notification {
+  background: $green-light;
+  font-weight: $font-weight-bold;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+.browse-happy {
+  z-index: $z-index--browse-happy;
+  position: absolute;
+  width: 100%;
+}

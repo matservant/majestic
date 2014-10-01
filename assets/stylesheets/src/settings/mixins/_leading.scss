@@ -1,0 +1,63 @@
+// ============================================================================
+// Leading
+// ============================================================================
+
+// Create properties using leading units for consistent vertical rhythm.
+
+@mixin leading($property, $lines: 1, $base: $font-size-base, $offset: 0) {
+  $values: ();
+
+  // @bug: For some reason, $leading can't be used as a local variable here;
+  // it keeps overwriting the global one. So: renaming to $leading-val. Do a
+  // search/replace for $leading-val if you ever figure this out, as this is
+  // where I'm having to name variables strangely to avoid that problem.
+  @each $line in $lines {
+    $leading-val: leading($line, $base, $offset);
+    $values: append($values, $leading-val);
+  }
+
+  #{$property}: $values;
+}
+
+// Aliases for beter SASS readability
+// ----------------------------------------------------------------------------
+
+@mixin margin($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(margin, $lines, $base, $offset);
+}
+
+@mixin margin-top($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(margin-top, $lines, $base, $offset);
+}
+
+@mixin margin-right($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(margin-right, $lines, $base, $offset);
+}
+
+@mixin margin-left($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(margin-left, $lines, $base, $offset);
+}
+
+@mixin margin-bottom($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(margin-bottom, $lines, $base, $offset);
+}
+
+@mixin padding($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(padding, $lines, $base, $offset);
+}
+
+@mixin padding-top($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(padding-top, $lines, $base, $offset);
+}
+
+@mixin padding-right($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(padding-right, $lines, $base, $offset);
+}
+
+@mixin padding-left($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(padding-left, $lines, $base, $offset);
+}
+
+@mixin padding-bottom($lines: 1, $base: $font-size-base, $offset: 0) {
+  @include leading(padding-bottom, $lines, $base, $offset);
+}

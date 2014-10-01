@@ -1,0 +1,46 @@
+// ============================================================================
+// Images
+// ============================================================================
+
+img {
+  @include img-responsive();
+  border-radius: $border-radius-base;
+  vertical-align: middle;
+}
+
+figure {
+  margin: 0;
+}
+
+// SVG Images
+img[src$=".svg"] {
+  height: auto;
+  max-width: auto;
+  width: 100%;
+}
+
+// Variations
+// ----------------------------------------------------------------------------
+
+// Ensure images don't scale beyond their parents
+.img-responsive {
+  @include img-responsive();
+}
+
+.img-rounded {
+  border-radius: $border-radius-lg;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.img-thumbnail {
+  @include img-responsive(inline-block); // keep them at most 100% wide
+  transition: all .2s ease-in-out;
+  background-color: $body-bg;
+  border-radius: $border-radius-base;
+  border: 1px solid $border-color-base;
+  line-height: $line-height-base;
+  padding: 4px;
+}

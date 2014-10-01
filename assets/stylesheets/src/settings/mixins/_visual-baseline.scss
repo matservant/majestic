@@ -1,0 +1,22 @@
+// ============================================================================
+// Visual Baseline
+// ============================================================================
+
+// Displays a visual baseline grid to help debug.
+// @source: http://www.soholaunch.com/Blog.php?id=62
+
+@if $visual-baseline == true {
+  // Convert the rem height to a unitless px value (i.e. 24).
+  $height: strip-unit(u($leading, px));
+
+  // Get the RGB values of the color variable
+  $r: red($visual-baseline-color);
+  $g: green($visual-baseline-color);
+  $b: blue($visual-baseline-color);
+
+  $image: "http://basehold.it/i/#{$height}/#{$r}/#{$g}/#{$b}";
+
+  body {
+    background: url($image) repeat 0 0;
+  }
+}

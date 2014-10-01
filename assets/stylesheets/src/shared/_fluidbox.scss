@@ -1,0 +1,143 @@
+// ============================================================================
+// Fluidbox styles
+// ============================================================================
+
+// Styles
+// ----------------------------------------------------------------------------
+
+.gallery--overlay {
+  background: rgba(black, 0.85);
+  display: none;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  transform: translateZ(0);
+  width: 100%;
+  z-index: $z-index--fluidbox-overlay;
+}
+
+.gallery--outer,
+.fluidbox-outer-ghost {
+  animation-duration: 0.5s;
+  display: none;
+  padding: 0px;
+  position: fixed;
+  transform: translateZ(0);
+  z-index: $z-index--fluidbox-outer;
+}
+
+.gallery--inner {
+  box-shadow: 0 0 30px rgba(black, 0.5);
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+$loader-size: 5em;
+
+.gallery--loading {
+  @extend .loader;
+  display: block;
+  height: $loader-size;
+  left: 50%;
+  margin-left: ($loader-size / 2 * -1);
+  margin-top: ($loader-size / 2 * -1);
+  position: fixed;
+  top: 50%;
+  width: $loader-size;
+  z-index: $z-index--fluidbox-loading;
+}
+
+.gallery--title {
+  bottom: 0;
+  color: white;
+  display: block;
+  left: 0;
+  padding: 0.5em 0;
+  position: absolute;
+  text-align: center;
+  text-shadow: 2px 3px 10px black;
+  width: 100%;
+  z-index: $z-index--fluidbox-title;
+}
+
+// Buttons
+// ----------------------------------------------------------------------------
+
+.gallery--close,
+.gallery--nav {
+  cursor: pointer;
+}
+
+.gallery--close {
+  height: 24px;
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  width: 24px;
+}
+
+.gallery--outer.touch .gallery--nav {
+  display: none;
+}
+
+.gallery--nav {
+  height: 100%;
+  opacity: 0.35;
+  position: absolute;
+  width: 20%;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:before {
+    color: white;
+    font-size: 4em;
+    position: absolute;
+    text-shadow: 2px 3px 10px black;
+    top: 40%;
+  }
+}
+
+.gallery--next {
+  right: -1px;
+
+  &:before {
+    background-position: -279px -188px;
+    content: "\2192";
+    right: 0.5em;
+  }
+}
+
+.gallery--prev {
+  left: -1px;
+
+  &:before {
+    background-position: -255px -188px;
+    content: "\2190";
+    left: 0.5em;
+  }
+}
+
+// Animation Settings
+.gallery--overlay,
+.gallery--loading,
+.gallery--outer {
+  animation-duration: 0.5s;
+}
+
+.gallery--overlay.closing,
+.gallery--outer.opening {
+  animation-delay: 0.3s;
+}
+
+.gallery--nav,
+.gallery--title {
+  transition: opacity 0.25s;
+}

@@ -1,0 +1,29 @@
+// ============================================================================
+// Navs
+// ============================================================================
+
+// Variables
+$nav-lg-height: $leading * 1.5;
+
+// Base styles
+// ----------------------------------------------------------------------------
+
+.nav {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.nav--item {
+  float: left;
+
+  a {
+    @extend %upper;
+    display: block;
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    line-height: $nav-lg-height;
+    padding: 0 $padding-horiz-base;
+  }
+}

@@ -1,0 +1,10 @@
+// ============================================================================
+// Type scale
+// ============================================================================
+
+// Create a double stranded modular scale to help size text using Bourbon'/'s
+// modular-scale() mixin
+
+@function type-scale($increment, $value: $type-scale-strands, $ratio: $type-scale-ratio) {
+  @return modular-scale($value, $increment, $ratio);
+}

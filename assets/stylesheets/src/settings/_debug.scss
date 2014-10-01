@@ -1,0 +1,16 @@
+// ============================================================================
+// Debug Settings
+// ============================================================================
+
+// Visually highlight any potential markup/accessibility quirks in the browser.
+$debug-mode:                false !default;
+
+// Set $visual-grid to true to make sure your site is lining up as expected
+$visual-grid:               false !default;
+$visual-grid-color:         $gray-light !default;
+$visual-grid-index:         back !default;
+$visual-grid-opacity:       0.5 !default;
+
+// Displays a baseline grid to make sure the vertical rhythm is consistent.
+$visual-baseline:           false !default;
+$visual-baseline-color:     $red !default; // hex value without the #

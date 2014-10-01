@@ -1,0 +1,53 @@
+// ============================================================================
+// Settings
+// ============================================================================
+
+// Import global variables, functions, and mixins here. Anything that lives on
+// this level should be generic and applicable scross the entire project.
+// Component-specific mixins or variables should live at the component level.
+//
+// This is a manifest file used to import stylesheet partials. To add new
+// styles, create a new `.scss` file and import it below. All partials
+// should begin with an underscore.
+
+// Global variables
+@import "global";
+
+// Libraries
+@import "bourbon";
+@import "neat";
+
+// Functions
+@import "functions/absolute-unit";
+@import "functions/convert-unit";
+@import "functions/leading";
+@import "functions/min-lines-for";
+@import "functions/relative-unit";
+@import "functions/strip-unit";
+@import "functions/type-scale";
+
+// Variables
+@import "grid";
+@import "breakpoints";
+@import "colors";
+@import "type";
+@import "theme";
+@import "debug";
+@import "z-index";
+
+// Mixins
+@import "mixins/clearfix";
+@import "mixins/debug";
+@import "mixins/font-size";
+@import "mixins/font-smoothing";
+@import "mixins/headings";
+@import "mixins/img-responsive";
+@import "mixins/leading";
+@import "mixins/leading-borders";
+@import "mixins/link-color";
+@import "mixins/media-aliases";
+@import "mixins/shadow-letters";
+@import "mixins/tab-focus";
+@import "mixins/text-hide";
+@import "mixins/text-overflow";
+@import "mixins/visual-baseline";

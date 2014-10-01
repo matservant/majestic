@@ -1,0 +1,18 @@
+// ============================================================================
+// Shadow letters
+// ============================================================================
+
+@mixin shadow-letters($color: $gray-dark, $direction: left, $depth: 6) {
+  $shadows: ();
+
+  @while $depth > 0 {
+    $x: if($direction == left, -$depth, $depth);
+    $y: $depth;
+
+    $shadow: $x $y 0 $color;
+    $shadows: append($shadows, $shadow, comma);
+    $depth: $depth - 1px;
+  }
+
+  text-shadow: $shadows;
+}

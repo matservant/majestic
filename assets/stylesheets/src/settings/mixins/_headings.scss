@@ -1,0 +1,16 @@
+// ============================================================================
+// Headings selector
+// ============================================================================
+
+// @source: http://compass-style.org/reference/compass/helpers/selectors/#append-selector
+// @version: 0.12.2
+
+// Shortcut to cycle through headings
+
+@mixin headings($from: 1, $to: 6){
+  @for $i from $from through $to{
+    h#{$i}{
+      @content
+    }
+  }
+}

@@ -1,0 +1,153 @@
+// ============================================================================
+// Booking
+// ============================================================================
+
+// Rates
+// ----------------------------------------------------------------------------
+
+// <dl class="rates">
+//   <dt class="rates--heading">...</dt>
+//   <dd class="rates--content">
+//     <ul class="rates-list">
+//       <li class="rates-list--item">...</li>
+//       ...
+//     </ul>
+//   </dd>
+// </dl>
+
+
+// The heading for each rates section ("Daily, 9am-12pm")
+.rates--heading {
+  @extend %upper;
+}
+
+.rates--subheading {
+  color: $gray;
+  margin-left: .5rem;
+  font-weight: normal;
+}
+
+// The <li> line-items
+.rates-list--item {
+  overflow: hidden;
+
+  .term {
+    position: relative;
+
+    &:after {
+      color: $gold-light;
+      content: "......................................................................................................................................";
+      height: $leading;
+      left: 100%;
+      margin-left: .5rem;
+      position: absolute;
+      z-index: -100;
+      letter-spacing: .1em;
+    }
+  }
+
+  .price {
+    background: white;
+    float: right;
+    padding-left: .5rem;
+    z-index: $z-index--rates-price;
+  }
+}
+
+// Form files
+// ----------------------------------------------------------------------------
+
+.file-list {
+  @include row;
+  @extend %readable-padding;
+
+  li {
+    @include span-columns(4);
+    text-align: center;
+  }
+
+  a {
+    display: block;
+    border: none;
+  }
+
+  @include below($screen-xs) {
+    li {
+      @include fill-parent;
+    }
+
+    .file-image {
+      display: none;
+    }
+
+    .file-download {
+      border-radius: $border-radius-lg;
+      border: $border-width-base solid $green;
+      margin-bottom: $leading / 2;
+      padding: $padding-vert-base;
+
+      &:hover {
+        background: $green;
+        color: white;
+      }
+    }
+  }
+}
+
+.file-image {
+  @extend %upper;
+  border-radius: $border-radius-lg;
+  border: $border-width-base solid $green;
+  color: $green;
+  font-size: $font-size-sm;
+  height: 11rem;
+  margin: 0 auto ($leading / 2);
+  max-width: 8rem;
+  padding: 2.5em 0.5em 1em;
+  position: relative;
+
+  &:after {
+    content: "\2193";
+    display: block;
+    font-size: 2.75em;
+    font-style: normal;
+    position: absolute;
+    bottom: 0.75em;
+    opacity: 0.5;
+    color: $gold;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  &:hover {
+    background: $green;
+    color: $white;
+
+    &:after {
+      color: $white;
+    }
+  }
+
+  @include below($grid-break) {
+    max-width: 100%;
+  }
+}
+
+.file-download {
+  display: block;
+}
+
+// FAQs
+// ----------------------------------------------------------------------------
+
+.dl-faq {
+  // Add space at the right times
+  dd + dt {
+    margin-top: ($leading * 1.5);
+  }
+
+  dt {
+    font-size: $font-size-lg;
+  }
+}

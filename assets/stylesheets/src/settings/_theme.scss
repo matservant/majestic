@@ -1,0 +1,70 @@
+// ============================================================================
+// Global Styles
+// ============================================================================
+
+// Generic style values that can be reused across your entire project. If a
+// variable applies only to a specific component, it should be placed at the top
+// of the component's .scss file.
+
+// Animation
+$animations:                true !default;
+$timing-base:               .1s !default;
+$easing-base:               ease-in-out !default;
+
+// Background
+$body-bg:                   white !default;
+
+// Border-radius
+$border-radius-base:        2px !default;
+$border-radius-lg:          4px !default;
+$border-radius-sm:          1px !default;
+
+// Borders
+$border-color-base:         $gray-lighter;
+$border-width-base:         2px !default;
+$border-width-sm:           1px !default;
+$border-width-lg:           4px !default;
+
+// Color states
+$color-info:                $gray-dark !default;
+$color-info-border:         $gray-light !default;
+$color-info-bg:             $gray-lighter !default;
+
+$color-success:             $green !default;
+$color-success-border:      $green-light !default;
+$color-success-bg:          $green-lighter !default;
+
+$color-warning:             $orange !default;
+$color-warning-border:      $orange-light !default;
+$color-warning-bg:          $orange-lighter !default;
+
+$color-danger:              $red !default;
+$color-danger-border:       $red-light !default;
+$color-danger-bg:           $red-lighter !default;
+
+// Component colors
+$component-color-active:    white !default;
+$component-bg-active:       $color-primary !default;
+
+// Padding
+$padding-horiz-base:       12px !default;
+$padding-horiz-lg:         16px !default;
+$padding-horiz-sm:         10px !default;
+$padding-horiz-xs:          5px !default;
+
+$padding-vert-base:         6px !default;
+$padding-vert-lg:          10px !default;
+$padding-vert-sm:           5px !default;
+$padding-vert-xs:           1px !default;
+
+$block-padding:             $leading * 2;
+
+// Sprite placeholder for updating the background size
+%sprite-bg {
+  background: url(../images/sprite.svg) no-repeat 0 0;
+  background-size: 350px 216px;
+
+  .no-svg & {
+    background-image: url(../images/sprite.png);
+  }
+}

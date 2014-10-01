@@ -1,0 +1,173 @@
+// ============================================================================
+// Layout
+// ============================================================================
+
+// This is the basic template for all the pages.
+
+// Header
+// ----------------------------------------------------------------------------
+
+$header-height: $leading * 1.5;
+
+.banner {
+  background: $white;
+  box-shadow: 0 2px 0 rgba(black, .1);
+  height: $header-height;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $z-index--banner;
+}
+
+.brand {
+  float: left;
+  padding: 6px 0 3px;
+
+  svg {
+    display: block;
+    fill: $link-color;
+    height: 36px;
+    transition: fill $easing-base $timing-base;
+    width: 90px;
+
+    &:hover {
+      fill: $link-hover-color;
+    }
+  }
+}
+
+.nav-primary {
+  float: right;
+  margin-right: $padding-horiz-base * -1;
+
+  .active a {
+    color: $black;
+  }
+
+  // The NPL link
+  .nav--item:last-child a {
+    margin-left: $padding-horiz-base;
+    transition: $timing-base $easing-base opacity;
+
+    svg {
+      display: block;
+      height: 42px;
+      width: 56px;
+      fill: $link-color;
+      transition: fill $timing-base $easing-base;
+
+      &:hover {
+        fill: $link-hover-color;
+      }
+    }
+  }
+
+  .nav--item.active:last-child a svg {
+    fill: $black;
+  }
+}
+
+// Masthead
+// ----------------------------------------------------------------------------
+
+$masthead-color:    $color-secondary;
+
+.masthead {
+  background: {
+    attachment: fixed;
+    color: $masthead-color;
+    image: url("../images/building-drawing.png");
+    repeat: no-repeat;
+    position: center -4em;
+    size: 960px;
+  }
+  margin-top: $header-height;
+  padding: ($leading * 3) 0;
+  text-align: center;
+  width: 100%;
+}
+
+.page-title {
+  @include shadow-letters(darken($masthead-color, 20%), left, 6px);
+  color: $white;
+  margin: 0;
+  line-height: 1;
+}
+
+.page-subtitle {
+  animation-delay: .25s;
+  margin: $leading 0 0;
+
+  &.nav {
+    display: inline-block;
+  }
+}
+
+.page-subtitle--item {
+  border-bottom: 2px solid transparent;
+  color: $white;
+  font-size: $font-size-sm;
+  margin-bottom: 0;
+
+  .nav--item & {
+    &:hover {
+      color: $white;
+      border-bottom-color: $white;
+    }
+  }
+}
+
+// Content
+// ----------------------------------------------------------------------------
+
+.container {
+  @include outer-container;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+%readable-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.readable {
+  margin: 0 auto;
+  max-width: $readable-width;
+}
+
+.block {
+  padding-top: $block-padding;
+}
+
+// Footer
+// ----------------------------------------------------------------------------
+
+.site-info {
+  border-top: $border-width-base solid $gray-lighter;
+  color: $gray-dark;
+  margin-top: $leading * 2;
+  padding: $leading 0;
+  text-align: center;
+
+  ul {
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+
+  li:after {
+    color: $gold-light;
+    content: "+";
+    display: inline-block;
+    padding: 0 .75em;
+  }
+
+  li:last-child:after {
+    content: "";
+  }
+
+  small {
+    color: $gray;
+  }
+}

@@ -1,0 +1,84 @@
+// ============================================================================
+// Buttons
+// ============================================================================
+
+// Variables
+// ----------------------------------------------------------------------------
+
+$button-font-weight:               $font-weight-normal !default;
+$button-border-width:              $border-width-base;
+
+$button-default-color:             $white !default;
+$button-default-bg:                $gold !default;
+
+$button-primary-color:             $white !default;
+$button-primary-bg:                $green !default;
+
+$button-link-disabled-color:       $gray-light !default;
+
+// Mixins
+// ----------------------------------------------------------------------------
+
+@mixin button-size($padding-vert, $padding-horiz, $font-size, $line-height-base, $border-radius) {
+  border-radius: $border-radius;
+  font-size: $font-size;
+  line-height: $line-height-base;
+  padding: $padding-vert $padding-horiz;
+}
+
+@mixin button-variant($color, $background) {
+  background-color: $background;
+  color: $color;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background-color: darken($background, 8%);
+    background-image: none;
+    color: $color;
+  }
+}
+
+// Base styles
+// ----------------------------------------------------------------------------
+
+.btn {
+  @include button-size($padding-vert-base, $padding-horiz-base, $font-size-base, $line-height-base, $border-radius-base);
+  @include user-select(none);
+  background-image: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: $button-font-weight;
+  margin-bottom: 0; // For input.button
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &,
+  &:active,
+  &.active {
+    &:focus {
+      @include tab-focus();
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $button-default-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    background-image: none;
+    outline: 0;
+  }
+}
+
+// Alternate buttons
+// ----------------------------------------------------------------------------
+
+.btn-default  { @include button-variant($button-default-color, $button-default-bg); }
+.btn-primary  { @include button-variant($button-primary-color, $button-primary-bg); }

@@ -1,0 +1,129 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.btn, .acf-button.blue, .wp-core-ui .button-primary {
+  border-radius: 2px;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 6px 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap; }
+  .btn:focus, .acf-button.blue:focus, .wp-core-ui .button-primary:focus, .btn:active:focus, .acf-button.blue:active:focus, .wp-core-ui .button-primary:active:focus, .btn.active:focus, .active.acf-button.blue:focus, .wp-core-ui .active.button-primary:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px; }
+  .btn:hover, .acf-button.blue:hover, .wp-core-ui .button-primary:hover, .btn:focus, .acf-button.blue:focus, .wp-core-ui .button-primary:focus {
+    color: white;
+    text-decoration: none; }
+  .btn:active, .acf-button.blue:active, .wp-core-ui .button-primary:active, .btn.active, .active.acf-button.blue, .wp-core-ui .active.button-primary {
+    background-image: none;
+    outline: 0; }
+
+.btn-default {
+  background-color: #a5895f;
+  color: white; }
+  .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+    background-color: #8c734f;
+    background-image: none;
+    color: white; }
+
+.btn-primary {
+  background-color: #1d9079;
+  color: white; }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+    background-color: #176e5d;
+    background-image: none;
+    color: white; }
+
+* {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
+.calendar-help {
+  max-width: 600px; }
+  .calendar-help p {
+    font-size: 1rem; }
+
+.calendar-help--image {
+  background: url(../images/help-calendar.png) no-repeat 0 0;
+  border-radius: 2px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
+  height: 400px;
+  opacity: 0.75;
+  width: 650px; }
+
+#wpadminbar, #wpadminbar *, input.adminbar-input, .media-frame, .media-modal, .media-frame input[type=email], .media-frame input[type=number], .media-frame input[type=password], .media-frame input[type=search], .media-frame input[type=text], .media-frame input[type=url], .media-frame select, .media-frame textarea, .media-frame .search, .press-this a.wp-switch-editor, body {
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+
+#wpadminbar, #wpadminbar *, body, .media-modal-content, #wpwrap {
+  -webkit-font-smoothing: antialiased; }
+
+label, label:hover {
+  cursor: default; }
+
+.inside > .acf-field > .acf-label:first-child label {
+  color: #a5895f;
+  font-size: 1.308962rem;
+  font-weight: 500; }
+
+.acf-input label {
+  font-weight: 500 !important; }
+
+.acf-button.blue, .wp-core-ui .button-primary {
+  background-color: #1d9079;
+  color: white;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 5px 10px;
+  font-weight: 500 !important;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  box-shadow: none !important;
+  line-height: 26px;
+  padding-bottom: 1px;
+  padding-top: 0; }
+  .acf-button.blue:hover, .acf-button.blue:focus, .acf-button.blue:active, .acf-button.blue.active, .wp-core-ui .button-primary:hover, .wp-core-ui .button-primary:focus, .wp-core-ui .button-primary:active, .wp-core-ui .button-primary.active {
+    background-color: #176e5d;
+    background-image: none;
+    color: white; }
+
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="date"], input[type="month"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="week"], input[type="number"], input[type="search"], input[type="tel"], input[type="color"], textarea {
+  border-radius: 2px;
+  font-family: 'Source Code Pro', "Bitstream Vera Sans Mono", Consolas, Courier, monospace; }
+  input[type="text"]:focus, input[type="text"].focus, input[type="password"]:focus, input[type="password"].focus, input[type="email"]:focus, input[type="email"].focus, input[type="url"]:focus, input[type="url"].focus, input[type="date"]:focus, input[type="date"].focus, input[type="month"]:focus, input[type="month"].focus, input[type="time"]:focus, input[type="time"].focus, input[type="datetime"]:focus, input[type="datetime"].focus, input[type="datetime-local"]:focus, input[type="datetime-local"].focus, input[type="week"]:focus, input[type="week"].focus, input[type="number"]:focus, input[type="number"].focus, input[type="search"]:focus, input[type="search"].focus, input[type="tel"]:focus, input[type="tel"].focus, input[type="color"]:focus, input[type="color"].focus, textarea:focus, textarea.focus {
+    box-shadow: none;
+    border-color: #1d9079; }
+
+#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, .folded #adminmenu li.current.menu-top, .folded #adminmenu li.wp-has-current-submenu {
+  background-color: #1d9079 !important; }
+
+#wpadminbar .ab-top-menu > li.hover > .ab-item, #wpadminbar .ab-top-menu > li > .ab-item:focus, #wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus, #wpadminbar > #wp-toolbar a:focus span.ab-label, #wpadminbar > #wp-toolbar li.hover span.ab-label, #wpadminbar > #wp-toolbar li:hover span.ab-label, #wpadminbar .quicklinks .menupop ul li a:focus, #wpadminbar .quicklinks .menupop ul li a:focus strong, #wpadminbar .quicklinks .menupop ul li a:hover, #wpadminbar .quicklinks .menupop ul li a:hover strong, #wpadminbar .quicklinks .menupop.hover ul li a:focus, #wpadminbar .quicklinks .menupop.hover ul li a:hover, #wpadminbar li .ab-item:focus:before, #wpadminbar li a:focus .ab-icon:before, #wpadminbar li.hover .ab-icon:before, #wpadminbar li.hover .ab-item:before, #wpadminbar li:hover #adminbarsearch:before, #wpadminbar li:hover .ab-icon:before, #wpadminbar li:hover .ab-item:before, #wpadminbar.nojs .quicklinks .menupop:hover ul li a:focus, #wpadminbar.nojs .quicklinks .menupop:hover ul li a:hover, #wpadminbar .quicklinks .menupop .ab-sub-secondary > li .ab-item:focus a, #wpadminbar .quicklinks .menupop .ab-sub-secondary > li > a:hover, #wpadminbar .quicklinks li a:hover .blavatar, .media-modal-close:hover .media-modal-icon:before, a:active, a:hover, .attention, .wp-core-ui input[type=reset]:active, .wp-core-ui input[type=reset]:hover, #adminmenu .wp-submenu a:focus, #adminmenu .wp-submenu a:hover, #adminmenu a:hover, #adminmenu li.menu-top > a:focus, #adminmenu li:hover div.wp-menu-image:before, #collapse-menu:hover, #collapse-menu:hover #collapse-button div:after, .tablenav .next:hover, .tablenav .prev:hover, a.post-format-icon:hover:before, a.post-state-format:hover:before, #find-posts-close:hover, .js #removing-widget, .media-menu > a, a, .star-rating .star, .tablenav .next, .tablenav .prev, .view-switch a.current:before, .theme-browser .theme.add-new-theme:focus span:after, .theme-browser .theme.add-new-theme:hover span:after, .wp-full-overlay a.collapse-sidebar:hover, .nav-menus-php .submitbox .submitcancel, #wp-auth-check-wrap .wp-auth-check-close:hover:before {
+  color: #1d9079; }
+
+#adminmenu li a.wp-has-current-submenu .update-plugins, #adminmenu li.current a .awaiting-mod, .post-com-count:hover span, #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, .folded #adminmenu li.current.menu-top, .folded #adminmenu li.wp-has-current-submenu, strong .post-com-count span, .media-item .bar, .theme-browser .theme.add-new-theme:focus:after, .theme-browser .theme.add-new-theme:hover:after, .theme-overlay .theme-header .close:focus, .theme-overlay .theme-header .close:hover, .theme-overlay .theme-header .left:focus, .theme-overlay .theme-header .left:hover, .theme-overlay .theme-header .right:focus, .theme-overlay .theme-header .right:hover .theme-browser .theme .theme-installed, .wp-badge, .nav-menus-php .submitbox .submitcancel:hover, .wrap .add-new-h2:hover, .wp-core-ui .button-primary-disabled, .wp-core-ui .button-primary.disabled, .wp-core-ui .button-primary:disabled, .wp-core-ui .button-primary[disabled] {
+  background-color: #1d9079 !important; }
+
+.wp-core-ui .button-primary, .wp-core-ui .button-primary.focus, .wp-core-ui .button-primary.hover, .wp-core-ui .button-primary:focus, .wp-core-ui .button-primary:hover, .wp-slider .ui-slider-handle, .wp-slider .ui-slider-handle.focus, .wp-slider .ui-slider-handle.ui-state-hover {
+  border-color: #1d9079; }
+
+strong .post-com-count:after {
+  border-top-color: #1d9079; }
+
+.nav-menus-php .submitbox .submitcancel {
+  border-bottom-color: #1d9079; }
+
+.metabox-holder .postbox-container .empty-container {
+  border: none; }

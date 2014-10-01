@@ -1,0 +1,35 @@
+// ============================================================================
+// Icons
+// ============================================================================
+
+// Variables
+$icon-size: 24px;
+
+.icon {
+  @extend %sprite-bg;
+  background-position: 0 -190px;
+  display: block;
+  float: left;
+  height: $icon-size;
+  margin-right: 0.5em;
+  width: $icon-size;
+}
+
+.icon-address   { background-position-x:    1px; }
+.icon-phone     { background-position-x:  -68px; }
+.icon-fax       { background-position-x:  -91px; }
+.icon-email     { background-position-x: -114px; }
+.icon-facebook  { background-position-x: -136px; }
+
+.icon-logo-lg {
+  background-position: 0 0;
+  background-color: tomato;
+  height: 140px;
+  width: 350px;
+}
+
+.icon-logo-sm {
+  background-position: 0 -141px;
+  height: 38px;
+  width: 90px;
+}

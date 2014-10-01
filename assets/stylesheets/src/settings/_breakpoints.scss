@@ -1,0 +1,30 @@
+// ============================================================================
+// Breakpoint Variables
+// ============================================================================
+
+// Set the default media feature for media() and new-breakpoint()
+$default-feature:       min-width;
+
+// Screen size breakpoints to use with media queries
+$screen-xs:             em( 480) !default;
+$screen-sm:             em( 640) !default;
+$screen-md:             em( 800) !default;
+$screen-lg:             em(1024) !default;
+$screen-xl:             em(1600) !default;
+
+// Presets
+$screen-xs-up:          new-breakpoint(min-width $screen-xs);
+$screen-sm-up:          new-breakpoint(min-width $screen-sm);
+$screen-md-up:          new-breakpoint(min-width $screen-md);
+$screen-lg-up:          new-breakpoint(min-width $screen-lg);
+$screen-xl-up:          new-breakpoint(min-width $screen-xl);
+
+$screen-xs-down:        new-breakpoint(max-width $screen-xs);
+$screen-sm-down:        new-breakpoint(max-width $screen-sm);
+$screen-md-down:        new-breakpoint(max-width $screen-md);
+$screen-lg-down:        new-breakpoint(max-width $screen-lg);
+$screen-xl-down:        new-breakpoint(max-width $screen-xl);
+
+// The point at which the grid switches to favor larger screens. Used so you
+// don't have to remember which screen size most of the changes come in at.
+$grid-break:            $screen-sm;

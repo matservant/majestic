@@ -1,0 +1,22 @@
+// ============================================================================
+// About
+// ============================================================================
+
+.event-list {
+  @extend .list-plain;
+  @extend .list-inline;
+  text-align: center;
+}
+
+.event-list--item {
+  &:after {
+    color: $gold-light;
+    content: "+";
+    display: inline-block;
+    padding: 0 .75em;
+  }
+
+  &:last-child:after {
+    content: "";
+  }
+}

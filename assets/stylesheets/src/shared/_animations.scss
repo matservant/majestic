@@ -1,0 +1,184 @@
+// ============================================================================
+// Animate.css
+// http://daneden.me/animate
+// Licensed under the MIT license - http://opensource.org/licenses/MIT
+// Copyright (c) 2014 Daniel Eden
+// ============================================================================
+
+// Base
+// ----------------------------------------------------------------------------
+
+.animated {
+  animation-fill-mode: both;
+
+  &.infinite {
+    animation-iteration-count: infinite;
+  }
+
+  &.hinge {
+    animation-duration: 2s;
+  }
+}
+
+// FadeIn
+// ----------------------------------------------------------------------------
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: {
+    duration: 1s;
+    name: fadeIn;
+  }
+}
+
+// FadeInLeft
+// ----------------------------------------------------------------------------
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+// FadeInRight
+// ----------------------------------------------------------------------------
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+
+// FadeInUp
+// ----------------------------------------------------------------------------
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  animation: {
+    name: fadeInUp;
+    duration: 1s;
+  }
+}
+
+// FadeOut
+// ----------------------------------------------------------------------------
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+// FadeOutLeft
+// ----------------------------------------------------------------------------
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+}
+
+// FadeOutRight
+// ----------------------------------------------------------------------------
+
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.fadeOutRight {
+  animation-name: fadeOutRight;
+}
+
+// Slide Down
+// ----------------------------------------------------------------------------
+
+@keyframes slideDown {
+  0%   { transform: translateY(-2.25rem); }
+  100% { transform: translateY(0); }
+}
+
+.slideDown {
+  animation: {
+    name: slideDown;
+    duration: .5s;
+  }
+}
+
+// Slide Up
+// ----------------------------------------------------------------------------
+
+@keyframes slideUp {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-2.25rem); }
+}
+
+.slideUp {
+  animation: {
+    name: slideUp;
+    duration: .5s;
+  }
+}
