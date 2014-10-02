@@ -20,6 +20,7 @@
   <section id="events" class="events-section block">
     <div class="readable">
       <h2 class="section-heading"><span>Events</span></h2>
+      <ul class="events-list"></ul>
     </div>
   </section>
 

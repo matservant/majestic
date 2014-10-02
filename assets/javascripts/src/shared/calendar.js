@@ -6,82 +6,213 @@ $(document).ready(function() {
 
   // var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/rpsj44u6koirtq5hehkt21qs6k%40group.calendar.google.com/public/full?alt=json';
 
-  var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/majesticabilene.com_4btjp8jgfjolh4gv5e8aporjj4%40group.calendar.google.com/public/full?alt=json';
-  var nplCalendarUrl      = 'https://www.google.com/calendar/feeds/majesticabilene.com_rvq0brpefpo6tigrm30f1a4pnk%40group.calendar.google.com/public/full?alt=json';
+  // Majestitest
+  var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/e2lc6fnqe0s693pg9mdo92ot2g%40group.calendar.google.com/public/full?alt=json';
+  var nplCalendarUrl      = 'https://www.google.com/calendar/feeds/5u36rt092iis6lanmr1emoqi08%40group.calendar.google.com/public/full?alt=json';
 
-  var events = {};
+  if ($('body').hasClass('calendar')) {
 
-  function addEvents(events) {
-    var cal = $('.google-calendar').calendario({
-      caldata : events,
-      displayWeekAbbr : true
-    }),
-    $month = $('.calendar-header .month').html(cal.getMonthName()),
-    $year  = $('.calendar-header .year').html(cal.getYear());
+    // Add events to Calendario
+    // -------------------------------------------------------------------------
 
-    $('.calendar-nav .next').on('click', function(e){
-      e.preventDefault();
-      cal.gotoNextMonth(updateMonthYear);
-    });
+    var events = {};
 
-    $('.calendar-nav .prev').on('click', function(e){
-      e.preventDefault();
-      cal.gotoPreviousMonth(updateMonthYear);
-    });
+    function addEvents(events) {
+      var cal = $('.google-calendar').calendario({
+        caldata : events,
+        displayWeekAbbr : true
+      }),
+      $month = $('.calendar-header .month').html(cal.getMonthName()),
+      $year  = $('.calendar-header .year').html(cal.getYear());
 
-    function updateMonthYear() {
-      $month.html(cal.getMonthName());
-      $year.html(cal.getYear());
-    }
-  }
+      $('.calendar-nav .next').on('click', function(e){
+        e.preventDefault();
+        cal.gotoNextMonth(updateMonthYear);
+      });
 
-  // Return a string for the booked div depending on the page, address, etc.
-  // If the 'Where' field in GCal contains the string '173', it will put that address down
-  // If it contains '181', it will mark that as booked. If both, it will mention that.
-  function bookedText(majesticAddress) {
-    // if 181 only
-    if (majesticAddress.indexOf('181') >= 0) {
-      var bookedText = '181 Booked';
+      $('.calendar-nav .prev').on('click', function(e){
+        e.preventDefault();
+        cal.gotoPreviousMonth(updateMonthYear);
+      });
 
-      // if 181 and 173
-      if (majesticAddress.indexOf('173') >= 0) {
-        var bookedText = '173 &amp;<br> 181 Booked';
+      function updateMonthYear() {
+        $month.html(cal.getMonthName());
+        $year.html(cal.getYear());
       }
     }
 
-    // if 173 only
-    else if (majesticAddress.indexOf('173') >= 0) {
-      var bookedText = '173 Booked';
+    // Create string for booked block
+    // -------------------------------------------------------------------------
+
+    // Return a string for the booked div depending on the page, address, etc.
+    // If the 'Where' field in GCal contains the string '173', it will put that address down
+    // If it contains '181', it will mark that as booked. If both, it will mention that.
+    function bookedText(majesticAddress) {
+      // if 181 only
+      if (majesticAddress.indexOf('181') >= 0) {
+        var bookedText = '181 Booked';
+
+        // if 181 and 173
+        if (majesticAddress.indexOf('173') >= 0) {
+          var bookedText = '173 &amp;<br> 181 Booked';
+        }
+      }
+
+      // if 173 only
+      else if (majesticAddress.indexOf('173') >= 0) {
+        var bookedText = '173 Booked';
+      }
+
+      // Default
+      else {
+        var bookedText = 'Booked';
+      }
+
+      return bookedText;
     }
 
-    // Default
-    else {
-      var bookedText = 'Booked';
+    // Combine both JSON data feeds
+    // -------------------------------------------------------------------------
+
+    var JSONData = { count: 0,
+      value : {
+        description: "Calendars for The Majestic",
+        generator: "StackOverflow communal coding",
+        calendars: []
+      }
+    };
+
+    var urllist = [
+      majesticCalendarUrl,
+      nplCalendarUrl
+    ];
+
+    urllist.forEach(function addFeed(url) {
+      $.getJSON(url, complete);
+    });
+
+    function complete(result, status, jqXHR) {
+      // Track the number of calls completed back, we're not done until all 3
+      // asynchronous calls have returned
+      if (typeof complete.count === 'undefined') {
+        complete.count = urllist.length;
+      }
+
+      if (!result.feed.entry) {
+        console.log("No entries from ");
+      }
+      else {
+        JSONData.count += result.feed.entry.length;
+        JSONData.value.calendars = JSONData.value.calendars.concat(result);
+      }
+
+      // If all is well
+      if (!(--complete.count)) {
+        $.each(JSONData.value.calendars, function(i, calendarData) {
+          // Get the name of the calendar
+          calendarName = calendarData.feed.title.$t;
+
+          $.each(calendarData.feed.entry, function(i, item) {
+            // Get the event address
+            var eventAddress = item.gd$where[0].valueString;
+
+            // Get the date from the JSON object then format the date
+            // in a way that Calendario likes
+            var eventDate = new Date(item.gd$when[0].endTime);
+            var eventDate = ('0' + (eventDate.getMonth() + 1)).slice(-2) + '-'
+                          + ('0' + (eventDate.getDate()+1)).slice(-2) + '-'
+                          + eventDate.getFullYear();
+
+            var eventTag = '<span class="booked booked-' + calendarName.toLowerCase() +'">' + bookedText(eventAddress) +'</span>'
+
+            // Go through the events that we have so far. If the current eventDate
+            // is the same as one of the date keys we've already added to the object,
+            // append the new span to the exisitng one.
+            for (keyDate in events) {
+              if (keyDate == eventDate) {
+                eventTag = events[keyDate] + eventTag;
+              }
+            }
+
+            // Add the date and events to the object
+            events[eventDate] = eventTag;
+          });
+
+          // Now send our nicely formatted object to Calendario
+          addEvents(events);
+        });
+      }
     }
 
-    return bookedText;
   }
 
-  // Calendar page
-  if ($('body').hasClass('calendar')) {
+  // NPL page
+  // ---------------------------------------------------------------------------
+
+  if ($('body').hasClass('neon-parrot-lounge')) {
+
     // Get list of upcoming events formatted in JSON and send to Calendario
-    $.getJSON(majesticCalendarUrl, function(data) {
+    $.getJSON(nplCalendarUrl, function(data) {
+
       $.each(data.feed.entry, function(i, item) {
-        console.log(item);
-        // The "Where" field
+
+        // Get start and end time objects
+        var dateToday = new Date();
+        var dateStart = new Date(item.gd$when[0].startTime);
+        var dateEnd   = new Date(item.gd$when[0].endTime);
+
+        // Create friendly date string
+        var eventDate = $.format.date(dateStart, "ddd, MMM D");
+
+        // How many days until event?
+        var day = 1000 * 60 * 60 * 24;
+        var daysUntilEvent = Math.ceil((dateEnd.getTime() - dateToday.getTime()) / (day));
+
+        // Get a pretty date (Today, Tomorrow, 6 days, etc.)
+        if (daysUntilEvent == 0) {
+          prettyDate = "Today";
+        } else if (daysUntilEvent == 1) {
+          prettyDate = "Tomorrow";
+        } else if (daysUntilEvent > 1 && daysUntilEvent < 8) {
+          prettyDate = daysUntilEvent + " days from now";
+        } else {
+          prettyDate = null;
+        }
+
+        // Starting and ending times
+        eventStart = $.format.date(dateStart, "h:mm");
+        eventEnd = $.format.date(dateEnd, "h:mm");
+
+        // AM or PM
+        eventStartMarker = $.format.date(dateStart, "a");
+        eventEndMarker = $.format.date(dateEnd, "a");
+
+        // Get the event title, description, and address
+        var eventTitle = item.title.$t;
+        var eventDescription = item.content.$t;
         var eventAddress = item.gd$where[0].valueString;
-        // Get the date from the JSON object then format the date in a way that Calendario likes
-        var eventDate = new Date(item.gd$when[0].endTime);
-        // Make sure there are leading 0s on single digit numbers
-        var eventDate = ('0' + (eventDate.getMonth() + 1)).slice(-2) + '-'
-                      + ('0' + (eventDate.getDate()+1)).slice(-2) + '-'
-                      + eventDate.getFullYear();
 
-        events[eventDate] = '<span class="booked">' + bookedText(eventAddress) +'</span>';
+        // Only create markup if the event hasn't happened yet
+        if (daysUntilEvent >= 0) {
+          $('.events-list').append('
+            <li class="card event">
+              <header class="event--header">
+                <h2>' + eventTitle + '</h2>
+              </header>
+              <ul class="event--time">
+                <li>' + eventDate + '</li>
+                <li>' + eventStart + '<span class="am-pm">' + eventStartMarker + '</span>&mdash;'
+                      + eventEnd + '<span class="am-pm">' + eventEndMarker + '</span></li>
+              </ul>
+              <main class="event--description">
+                <p>' + eventDescription + '</p>
+              </main>
+            </li>
+          ');
+        }
       });
-
-      addEvents(events);
     });
+
   }
 
 });
