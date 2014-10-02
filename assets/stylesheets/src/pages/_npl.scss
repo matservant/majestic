@@ -17,3 +17,91 @@
     @include shadow-letters($black, left, 6px);
   }
 }
+
+.npl--bird-logo .svg-npl {
+  display: block;
+  fill: $gold-light;
+  margin: 0 auto;
+}
+
+// Events
+// ----------------------------------------------------------------------------
+
+.events-list {
+  @extend .list-plain;
+  @include row;
+}
+
+.event {
+  @include span-columns(4);
+  @include nth-omega(3n);
+  background: white;
+  border-radius: $border-radius-base;
+  box-shadow: $box-shadow-base;
+  margin-bottom: $leading;
+
+  @include media($screen-md-down) {
+    @include omega-reset(3n);
+    @include span-columns(6);
+    @include nth-omega(2n);
+  }
+
+  @include media($screen-sm-down) {
+    @include fill-parent;
+    @include omega-reset(3n, auto);
+    @include omega-reset(2n, auto);
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 480px;
+  }
+}
+
+.event--header,
+.event--when,
+.event--description {
+  padding: $padding-horiz-lg;
+}
+
+.event--header {
+  border-top: 4px solid $color-primary;
+  border-radius: $border-radius-base $border-radius-base 0 0;
+  text-align: center;
+
+  h3 {
+    color: $green;
+    margin: 0;
+  }
+}
+
+.event--when {
+  @extend .list-plain;
+  background: $gray-lighter;
+  text-align: center;
+
+  @include media($screen-sm-down) {
+    @include row;
+
+    li {
+      float: left;
+      width: 50%;
+    }
+  }
+
+  @include media($screen-xs-down) {
+    font-size: $font-size-sm;
+  }
+}
+
+.event--date {
+  font-weight: $font-weight-bold;
+}
+
+.am-pm {
+  text-transform: lowercase;
+}
+
+.event--description {
+  font-size: $font-size-sm;
+  margin: 0;
+}

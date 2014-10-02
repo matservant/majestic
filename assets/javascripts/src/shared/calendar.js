@@ -173,8 +173,6 @@ $(document).ready(function() {
           prettyDate = "Today";
         } else if (daysUntilEvent == 1) {
           prettyDate = "Tomorrow";
-        } else if (daysUntilEvent > 1 && daysUntilEvent < 8) {
-          prettyDate = daysUntilEvent + " days from now";
         } else {
           prettyDate = null;
         }
@@ -194,22 +192,44 @@ $(document).ready(function() {
 
         // Only create markup if the event hasn't happened yet
         if (daysUntilEvent >= 0) {
-          $('.events-list').append('
-            <li class="card event">
+          var eventTemplate = $('<li class="event"></li>');
+
+          if (eventTitle) {
+            eventTemplate.append('
               <header class="event--header">
-                <h2>' + eventTitle + '</h2>
+                <h3>' + eventTitle + '</h3>
               </header>
-              <ul class="event--time">
-                <li>' + eventDate + '</li>
-                <li>' + eventStart + '<span class="am-pm">' + eventStartMarker + '</span>&mdash;'
-                      + eventEnd + '<span class="am-pm">' + eventEndMarker + '</span></li>
+            ');
+          }
+
+          if (eventDate) {
+            // Show the pretty Date if it's available
+            displayDate = (prettyDate) ? prettyDate : eventDate;
+
+            eventTemplate.append('
+              <ul class="event--when">
+                <li class="event--date">' + displayDate + '</li>
               </ul>
-              <main class="event--description">
-                <p>' + eventDescription + '</p>
-              </main>
-            </li>
-          ');
+            ');
+          }
+
+          if (eventStart) {
+            eventTemplate.find('.event--when').append('
+              <li class="event--time">' + eventStart + '<span class="am-pm">' + eventStartMarker + '</span>&mdash;'
+                                        + eventEnd + '<span class="am-pm">' + eventEndMarker + '</span></li>
+            ');
+          }
+
+          if (eventDescription) {
+            eventTemplate.append('
+              <main class="event--description">' + eventDescription + '</main>
+            ');
+          }
+
+          // Add the event to the page
+          $('.events-list').append(eventTemplate);
         }
+
       });
     });
 

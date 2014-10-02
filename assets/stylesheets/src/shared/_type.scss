@@ -66,7 +66,7 @@ h6 { @include font-size($font-size-sm); }
 
 p {
   font-feature-settings: "kern", "onum", "liga";
-  margin-bottom: $leading;
+  margin: 0 0 $leading 0;
   word-break: break-all;
   word-break: break-word; // Non standard for webkit
 }

@@ -12,6 +12,9 @@
         <?php if ($about['content']) : ?>
           <?php echo $about['content'] ?>
         <?php endif ?>
+        <div class="npl--bird-logo">
+          <?php svg_sprite('npl') ?>
+        </div>
       </div>
       <?php majestic_gallery($about['gallery'], $about['grid_layout'], 'gallery-about'); ?>
     </section>
@@ -20,8 +23,8 @@
   <section id="events" class="events-section block">
     <div class="readable">
       <h2 class="section-heading"><span>Events</span></h2>
-      <ul class="events-list"></ul>
     </div>
+    <ul class="events-list"></ul>
   </section>
 
 <?php endwhile; ?>
