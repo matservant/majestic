@@ -1,6 +1,20 @@
 (function() {
   $(document).ready(function() {
-    var header, masthead, nplItem, nplSVG, subnavLink;
+    var header, masthead, nav, nplItem, nplSVG, subnavLink;
+    nav = responsiveNav(".nav-collapse", {
+      animate: true,
+      transition: 350,
+      label: "Menu",
+      insert: "before",
+      closeOnNavClick: true,
+      openPos: "relative",
+      navClass: "nav-collapse",
+      navActiveClass: "js-nav-active",
+      jsClass: "js",
+      init: function() {},
+      open: function() {},
+      close: function() {}
+    });
     header = $(".banner");
     masthead = $(".masthead");
     header.headroom({
@@ -35,7 +49,7 @@
     });
     nplItem = $('.nav-primary .nav--item:last-child a');
     nplSVG = '<svg class="svg-image svg-address"><use xlink:href="/wp-content/themes/majestic/assets/images/sprite.min.svg#npl"></use></svg>';
-    nplItem.html(nplSVG);
+    nplItem.append(nplSVG);
     subnavLink = $(".masthead a");
     subnavLink.click(function() {
       var target;

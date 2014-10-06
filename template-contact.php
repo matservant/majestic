@@ -22,16 +22,30 @@
       <?php echo $content ?>
       <?php if ($contact) : ?>
         <dl class="contact-info list-plain">
-          <dt class="label"><?php svg_sprite('address') ?></span> Address</dt>
-          <dd class="value"><?php echo $address_string ?></dd>
-          <dt class="label"><?php svg_sprite('phone') ?></span> Phone</dt>
-          <dd class="value"><a class="link-mobile" href="tel:<?php echo preg_replace("/[^0-9]/", "", $contact['phone']) ?>"><?php echo $contact['phone'] ?></a></dd>
-          <dt class="label"><?php svg_sprite('fax') ?></span> Fax</dt>
-          <dd class="value"><?php echo $contact['fax'] ?></dd>
-          <dt class="label"><?php svg_sprite('email') ?></span> Email</dt>
-          <dd class="value"><a href="mailto:<?php echo $contact['email'] ?>"><?php echo $contact['email'] ?></a></dd>
-          <dt class="label"><?php svg_sprite('facebook') ?></span> Facebook</dt>
-          <dd class="value"><a href="<?php echo $contact['facebook'] ?>" target="_blank">Visit us on Facebook</a></dd>
+          <?php if (!empty($contact['address'])) : ?>
+            <dt class="label">Address</dt>
+            <dd class="value"><?php echo $address_string ?></dd>
+          <?php endif ?>
+          <?php if (!empty($contact['phone'])) : ?>
+            <dt class="label">Phone</dt>
+            <dd class="value"><a class="link-mobile" href="tel:<?php echo preg_replace("/[^0-9]/", "", $contact['phone']) ?>"><?php echo $contact['phone'] ?></a></dd>
+          <?php endif ?>
+          <?php if (!empty($contact['fax'])) : ?>
+            <dt class="label">Fax</dt>
+            <dd class="value"><?php echo $contact['fax'] ?></dd>
+          <?php endif ?>
+          <?php if (!empty($contact['email'])) : ?>
+            <dt class="label">Email</dt>
+            <dd class="value"><a href="mailto:<?php echo $contact['email'] ?>"><?php echo $contact['email'] ?></a></dd>
+          <?php endif ?>
+          <?php if (!empty($contact['facebook'])) : ?>
+            <dt class="label">Facebook</dt>
+            <dd class="value"><a href="<?php echo $contact['facebook'] ?>" target="_blank">Visit us on Facebook</a></dd>
+          <?php endif ?>
+          <?php if (!empty($contact['office_hours'])) : ?>
+            <dt class="label">Office Hours</dt>
+            <dd class="value"><?php echo $contact['office_hours'] ?></dd>
+          <?php endif ?>
         </dl>
       <?php endif ?>
     </div>

@@ -1,0 +1,18 @@
+// ============================================================================
+// Blog styles
+// ============================================================================
+
+.list--divider {
+  @extend .list-plain;
+  border-top: 2px solid $gray-lighter;
+
+  li {
+    border-bottom: 2px solid $gray-lighter;
+  }
+
+  h2 {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+}

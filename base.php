@@ -9,9 +9,8 @@
   </head>
 
   <body <?php body_class(); ?>>
-    <!--[if lt IE 9]>
-      <div class="alert alert-warning">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en">upgrade your browser</a> to improve your experience.</div>
-    <![endif]-->
+    <?php majestic_gtm() ?>
+    <?php majestic_browse_happy() ?>
 
     <header class="banner">
       <div class="container">
@@ -22,7 +21,7 @@
     <section class="masthead">
       <div class="container">
         <h1 class="page-title animated fadeInUp">
-          <?php if (is_front_page() ) :
+          <?php if (is_front_page()) :
             svg_sprite('logo');
           else :
             the_title();

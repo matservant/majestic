@@ -5,8 +5,8 @@
 
 function remove_admin_items() {
   // Remove for everyone
-  remove_menu_page('edit.php');                   // Remove posts
   remove_menu_page('edit-comments.php');          // Remove comments
+  remove_menu_page('edit.php');                   // Remove posts
 
   // Remove for Andrea
   if (!current_user_can('update_core')) {

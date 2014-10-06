@@ -1,11 +1,33 @@
 <?php
 
+// Remove "Private" from private page titles
+// ----------------------------------------------------------------------------
+
+function majestic_private_title($title) {
+  $title = esc_attr($title);
+
+  $findthese = array(
+    '#Protected:#',
+    '#Private:#'
+  );
+
+  $replacewith = array(
+    '', // What to replace "Protected:" with
+    '' // What to replace "Private:" with
+  );
+
+  $title = preg_replace($findthese, $replacewith, $title);
+  return $title;
+}
+add_filter('the_title', 'majestic_private_title');
+
+
 // Insert SVG symbol
 // ----------------------------------------------------------------------------
 
 function svg_sprite($symbol_id) { ?>
   <svg class="svg-image svg-<?php echo $symbol_id ?>">
-    <use xlink:href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.min.svg#<?php echo $symbol_id ?>" /></use>
+    <use xlink:href="<?php echo get_template_directory_uri() ?>/assets/images/sprite.min.svg#<?php echo $symbol_id ?>"></use>
   </svg>
 <?php }
 
@@ -154,7 +176,16 @@ function majestic_get_contact_info($field_name = 'address') {
 function majestic_body_classes($classes) {
   global $post;
 
-  return array($post->post_name);
+  $classes = array();
+
+  if (is_singular('post')) :
+    $classes[] = 'single';
+  endif;
+
+  $classes[] = $post->post_name;
+  $classes[] = str_replace('.php', '', basename(get_page_template()));
+
+  return $classes;
 }
 add_filter('body_class','majestic_body_classes');
 
@@ -179,3 +210,25 @@ function roots_wp_title($title) {
   return $title;
 }
 add_filter('wp_title', 'roots_wp_title', 10);
+
+// Google Tag Manager snippet
+// ----------------------------------------------------------------------------
+
+function majestic_gtm() { ?>
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PJTQHS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PJTQHS');</script>
+<?php }
+
+// Browse Happy snippet
+// ----------------------------------------------------------------------------
+
+function majestic_browse_happy() { ?>
+  <!--[if lt IE 9]>
+    <div class="alert alert-warning">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en">upgrade your browser</a> to improve your experience.</div>
+  <![endif]-->
+<?php }

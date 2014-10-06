@@ -118,10 +118,6 @@ $cell-padding:        .25rem;
     border-bottom: $calendar-border;
     border-right: 1px solid $gray-lighter;
   }
-
-  > .fc-content {
-    // background: $green-light;
-  }
 }
 
 .fc-date {
@@ -136,15 +132,19 @@ $cell-padding:        .25rem;
 }
 
 .booked {
-  @extend %upper;
   background: $color-primary;
   color: $white;
   display: block;
   font-family: $font-family-sans;
   font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
   line-height: 1.2;
   margin: $cell-padding ($cell-padding * -1) 0;
   padding: $cell-padding ($cell-padding * 1.5);
+}
+
+.booked-the-majestic {
+  background: tomato;
 }
 
 // Responsive
@@ -183,8 +183,12 @@ $cell-padding:        .25rem;
       }
     }
 
+    .booked {
+      border-radius: $border-radius-base;
+      margin-top: 6px; // Dumb, I know! Center it on the line
+    }
+
     > .fc-content {
-      border-bottom: none;
       border-top: darken($green-light, 15%);
     }
   }

@@ -465,7 +465,7 @@ body {
   animation-duration: 0.5s; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #1a1a1a;
+  color: #333333;
   font-family: 'brandon-text', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   -webkit-font-feature-settings: "dlig", "liga", "lnum", "kern";
   -moz-font-feature-settings: "dlig", "liga", "lnum", "kern";
@@ -532,6 +532,10 @@ p {
   .lead.drop-cap:first-letter {
     font-size: 4.5rem; }
 
+.text-help {
+  color: #b3b3b3;
+  font-size: 0.85rem; }
+
 a {
   color: #1d9079;
   color: #1d9079;
@@ -571,7 +575,7 @@ ul, ol {
   ul ul, ul ol, ol ul, ol ol {
     margin-bottom: 0; }
 
-.list-plain, .list-inline, .list-inline-center, .gallery, .event-list, .events-list, .event--when {
+.list-plain, .list-inline, .list-inline-center, .gallery, .event-list, .list--divider, .events-list, .event--when {
   list-style: none;
   padding-left: 0; }
 
@@ -714,7 +718,7 @@ hr {
   margin: 1.5rem 0;
   padding: 0; }
 
-h2, .nav--item a, .rates--heading, .file-image, .fc-head div, .fc-weekday, .booked, .contact-info .label {
+h2, .nav--item a, .rates--heading, .file-image, .fc-head div, .fc-weekday, .contact-info .label {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase; }
@@ -740,6 +744,15 @@ abbr, acronym, blockquote, code, dir, kbd, listing, plaintext, q, samp, tt, var,
   -ms-hyphens: none;
   hyphens: none; }
 
+code {
+  background: #f2f2f2;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
+  font-size: 0.85rem;
+  font-family: 'Source Code Pro', "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+  padding: 0 0.5em; }
+  code .highlight {
+    color: tomato; }
+
 @font-face {
   font-family: 'brandon-text';
   font-weight: 700;
@@ -761,7 +774,7 @@ abbr, acronym, blockquote, code, dir, kbd, listing, plaintext, q, samp, tt, var,
   src: url('../fonts/brandon-text-regular.eot');
   src: url('../fonts/brandon-text-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/brandon-text-regular.woff') format('woff'), url('../fonts/brandon-text-regular.ttf') format('truetype'), url('../fonts/brandon-text-regular.svg#brandon-text') format('svg'); }
 
-.btn {
+.btn, .nav-toggle {
   border-radius: 2px;
   font-size: 1rem;
   line-height: 1.5;
@@ -779,14 +792,14 @@ abbr, acronym, blockquote, code, dir, kbd, listing, plaintext, q, samp, tt, var,
   text-align: center;
   vertical-align: middle;
   white-space: nowrap; }
-  .btn:focus, .btn:active:focus, .btn.active:focus {
+  .btn:focus, .nav-toggle:focus, .btn:active:focus, .nav-toggle:active:focus, .btn.active:focus, .active.nav-toggle:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
-  .btn:hover, .btn:focus {
+  .btn:hover, .nav-toggle:hover, .btn:focus, .nav-toggle:focus {
     color: white;
     text-decoration: none; }
-  .btn:active, .btn.active {
+  .btn:active, .nav-toggle:active, .btn.active, .active.nav-toggle {
     background-image: none;
     outline: 0; }
 
@@ -798,10 +811,10 @@ abbr, acronym, blockquote, code, dir, kbd, listing, plaintext, q, samp, tt, var,
     background-image: none;
     color: white; }
 
-.btn-primary {
+.btn-primary, .nav-toggle {
   background-color: #1d9079;
   color: white; }
-  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+  .btn-primary:hover, .nav-toggle:hover, .btn-primary:focus, .nav-toggle:focus, .btn-primary:active, .nav-toggle:active, .btn-primary.active, .active.nav-toggle {
     background-color: #176e5d;
     background-image: none;
     color: white; }
@@ -1089,24 +1102,85 @@ img[src$=".svg"] {
     .brand svg:hover {
       fill: #105044; }
 
-.nav-primary {
+.nav-collapse {
+  background: #f2f2f2;
+  border-radius: 0 0 2px 2px;
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  top: -4px;
+  width: 100%; }
+  .nav-collapse .nav--item {
+    border-top: 2px solid #e6e6e6;
+    display: block;
+    float: none;
+    text-align: center;
+    width: 100%; }
+    .nav-collapse .nav--item a:hover {
+      background: #e6e6e6; }
+  .nav-collapse .active a {
+    color: #333333; }
+  .js .nav-collapse {
+    clip: rect(0 0 0 0);
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    zoom: 1; }
+  .nav-collapse.opened {
+    max-height: 9999px; }
+  .nav-collapse .nav--item:last-child a svg {
+    display: none; }
+
+.disable-pointer-events {
+  pointer-events: none !important; }
+
+.nav-toggle {
   float: right;
-  margin-right: -12px; }
-  .nav-primary .active a {
-    color: #1a1a1a; }
-  .nav-primary .nav--item:last-child a {
-    margin-left: 12px;
-    transition: 0.1s ease-in-out opacity; }
-    .nav-primary .nav--item:last-child a svg {
-      display: block;
-      height: 42px;
-      width: 56px;
-      fill: #1d9079;
-      transition: fill 0.1s ease-in-out; }
-      .nav-primary .nav--item:last-child a svg:hover {
-        fill: #105044; }
-  .nav-primary .nav--item.active:last-child a svg {
-    fill: #1a1a1a; }
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 2.25rem; }
+
+@media screen and (min-width: 675px)  {
+  .js .nav-collapse {
+    position: relative; }
+  .js .nav-collapse.closed {
+    max-height: none; }
+  .nav-toggle {
+    display: none; }
+  .nav-primary {
+    background: transparent;
+    float: right;
+    margin-right: -12px;
+    width: auto; }
+    .nav-primary .active a {
+      color: #1a1a1a; }
+    .nav-primary .nav--item {
+      float: left;
+      width: auto; }
+    .nav-primary .nav--item:last-child a {
+      color: transparent;
+      margin-left: 12px;
+      overflow: hidden;
+      text-indent: -9999px;
+      transition: 0.1s ease-in-out opacity;
+      white-space: nowrap;
+      width: 70px; }
+      .nav-primary .nav--item:last-child a svg {
+        position: absolute;
+        top: 0;
+        display: block;
+        height: 42px;
+        width: 56px;
+        fill: #1d9079;
+        transition: fill 0.1s ease-in-out; }
+        .nav-primary .nav--item:last-child a svg:hover {
+          fill: #105044; }
+    .nav-primary .nav--item.active:last-child a svg {
+      fill: #1a1a1a; } }
 
 .masthead {
   background-attachment: fixed;
@@ -1195,6 +1269,15 @@ img[src$=".svg"] {
     padding: 0 0.75em; }
   .event-list--item:last-child:after {
     content: ""; }
+
+.list--divider {
+  border-top: 2px solid #f2f2f2; }
+  .list--divider li {
+    border-bottom: 2px solid #f2f2f2; }
+  .list--divider h2 {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0; }
 
 .rates--subheading {
   color: #b3b3b3;
@@ -1372,9 +1455,13 @@ img[src$=".svg"] {
   display: block;
   font-family: 'brandon-text', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 0.85rem;
+  font-weight: 700;
   line-height: 1.2;
   margin: 0.25rem -0.25rem 0;
   padding: 0.25rem 0.375rem; }
+
+.booked-the-majestic {
+  background: tomato; }
 
 @media screen and (max-width: 50em)  {
   .google-calendar h2 {
@@ -1394,8 +1481,10 @@ img[src$=".svg"] {
         float: left;
         line-height: 2.25rem;
         padding: 0 0.75em 0 0; }
+    .fc-row .booked {
+      border-radius: 2px;
+      margin-top: 6px; }
     .fc-row > .fc-content {
-      border-bottom: none;
       border-top: #a7d7cd; }
   .fc-date {
     text-align: right;
@@ -1497,6 +1586,11 @@ img[src$=".svg"] {
   background-position: -197px -179px;
   border-radius: 0 0 2px 2px; }
 
+.help .masthead {
+  background-color: #1d9079; }
+.help .page-title {
+  text-shadow: -6px 6px 0 #105044, -5px 5px 0 #105044, -4px 4px 0 #105044, -3px 3px 0 #105044, -2px 2px 0 #105044, -1px 1px 0 #105044, -0px 0px 0 #105044; }
+
 .home .page-title {
   margin: 0 auto; }
   .home .page-title svg {
@@ -1578,15 +1672,16 @@ img[src$=".svg"] {
   padding: 16px; }
 
 .event--header {
-  border-top: 4px solid #1d9079;
+  background: #f2f2f2;
+  border-bottom: 1px solid #e6e6e6;
   border-radius: 2px 2px 0 0;
   text-align: center; }
   .event--header h3 {
-    color: #1d9079;
     margin: 0; }
 
 .event--when {
-  background: #f2f2f2;
+  border-bottom: 1px solid #e6e6e6;
+  color: #a5895f;
   text-align: center; }
   @media screen and (max-width: 40em)  {
     .event--when {
@@ -1609,5 +1704,11 @@ img[src$=".svg"] {
   text-transform: lowercase; }
 
 .event--description {
+  color: #666666;
   font-size: 0.85rem;
   margin: 0; }
+
+.event--button {
+  display: block;
+  margin-top: 1.5rem; }
+  @media screen and (min-width: 40em)  { }

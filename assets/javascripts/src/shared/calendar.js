@@ -4,11 +4,14 @@ $(document).ready(function() {
   // it ends with /public/full?alt=json
   // https://support.google.com/calendar/answer/37648?hl=en
 
-  // var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/rpsj44u6koirtq5hehkt21qs6k%40group.calendar.google.com/public/full?alt=json';
+  // Dummy calendars
+  // var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/e2lc6fnqe0s693pg9mdo92ot2g%40group.calendar.google.com/public/full' + urlParams;
+  // var nplCalendarUrl      = 'https://www.google.com/calendar/feeds/5u36rt092iis6lanmr1emoqi08%40group.calendar.google.com/public/full' + urlParams;
 
-  // Majestitest
-  var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/e2lc6fnqe0s693pg9mdo92ot2g%40group.calendar.google.com/public/full?alt=json';
-  var nplCalendarUrl      = 'https://www.google.com/calendar/feeds/5u36rt092iis6lanmr1emoqi08%40group.calendar.google.com/public/full?alt=json';
+  var urlParams = '?alt=json&orderby=starttime&sortorder=ascending&futureevents=true';
+
+  var majesticCalendarUrl = 'https://www.google.com/calendar/feeds/rpsj44u6koirtq5hehkt21qs6k%40group.calendar.google.com/public/full' + urlParams;
+  var nplCalendarUrl      = 'https://www.google.com/calendar/feeds/p08apg0soacun6sv595f47njp8%40group.calendar.google.com/public/full' + urlParams;
 
   if ($('body').hasClass('calendar')) {
 
@@ -113,21 +116,25 @@ $(document).ready(function() {
           calendarName = calendarData.feed.title.$t;
 
           $.each(calendarData.feed.entry, function(i, item) {
+
             // Get the event address
             var eventAddress = item.gd$where[0].valueString;
 
             // Get the date from the JSON object then format the date
-            // in a way that Calendario likes
-            var eventDate = new Date(item.gd$when[0].endTime);
-            var eventDate = ('0' + (eventDate.getMonth() + 1)).slice(-2) + '-'
-                          + ('0' + (eventDate.getDate()+1)).slice(-2) + '-'
-                          + eventDate.getFullYear();
+            // in a way that Calendario likes (mm-dd-yyyy, e.g. '10-14-2014')
+            startTime = item.gd$when[0].startTime;
+            endTime = item.gd$when[0].endTime;
 
-            var eventTag = '<span class="booked booked-' + calendarName.toLowerCase() +'">' + bookedText(eventAddress) +'</span>'
+            eventDate = moment(startTime).format('MM-DD-YYYY');
+            eventStart = moment(startTime).format('hh:mma');
+            eventEnd = moment(endTime).format('hh:mma');
+
+            var bookedClass = calendarName.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'')
+            var eventTag = '<span class="booked booked-' + bookedClass + '">' + bookedText(eventAddress) +'</span>'
 
             // Go through the events that we have so far. If the current eventDate
             // is the same as one of the date keys we've already added to the object,
-            // append the new span to the exisitng one.
+            // append the new span to the exisiting one.
             for (keyDate in events) {
               if (keyDate == eventDate) {
                 eventTag = events[keyDate] + eventTag;
@@ -157,33 +164,15 @@ $(document).ready(function() {
       $.each(data.feed.entry, function(i, item) {
 
         // Get start and end time objects
-        var dateToday = new Date();
-        var dateStart = new Date(item.gd$when[0].startTime);
-        var dateEnd   = new Date(item.gd$when[0].endTime);
+        var startTime = item.gd$when[0].startTime;
+        var endTime = item.gd$when[0].endTime;
 
         // Create friendly date string
-        var eventDate = $.format.date(dateStart, "ddd, MMM D");
-
-        // How many days until event?
-        var day = 1000 * 60 * 60 * 24;
-        var daysUntilEvent = Math.ceil((dateEnd.getTime() - dateToday.getTime()) / (day));
-
-        // Get a pretty date (Today, Tomorrow, 6 days, etc.)
-        if (daysUntilEvent == 0) {
-          prettyDate = "Today";
-        } else if (daysUntilEvent == 1) {
-          prettyDate = "Tomorrow";
-        } else {
-          prettyDate = null;
-        }
+        var eventDate = moment(startTime).format("dddd, MMM Do");
 
         // Starting and ending times
-        eventStart = $.format.date(dateStart, "h:mm");
-        eventEnd = $.format.date(dateEnd, "h:mm");
-
-        // AM or PM
-        eventStartMarker = $.format.date(dateStart, "a");
-        eventEndMarker = $.format.date(dateEnd, "a");
+        eventStart = moment(startTime).format('h:mma');
+        eventEnd = moment(endTime).format('h:mma');
 
         // Get the event title, description, and address
         var eventTitle = item.title.$t;
@@ -191,32 +180,41 @@ $(document).ready(function() {
         var eventAddress = item.gd$where[0].valueString;
 
         // Only create markup if the event hasn't happened yet
-        if (daysUntilEvent >= 0) {
-          var eventTemplate = $('<li class="event"></li>');
+        var eventTemplate = $('<li class="event"></li>');
 
-          if (eventTitle) {
-            eventTemplate.append('
-              <header class="event--header">
-                <h3>' + eventTitle + '</h3>
-              </header>
-            ');
-          }
+        function prettyDate(date) {
+          moment.locale('en', {
+            calendar : {
+              lastDay : '[Yesterday,] MMM Do',
+              sameDay : '[Today,] MMM Do',
+              nextDay : '[Tomorrow,] MMM Do',
+              lastWeek : '[last] dddd[,] MMM Do',
+              nextWeek : '[This] dddd[,] MMM Do',
+              sameElse : 'dddd[,] MMM Do'
+            }
+          });
+
+          return moment(date).calendar();
+        }
+
+        if (eventTitle) {
+          eventTemplate.append('
+            <header class="event--header">
+              <h3>' + eventTitle + '</h3>
+            </header>
+          ');
 
           if (eventDate) {
-            // Show the pretty Date if it's available
-            displayDate = (prettyDate) ? prettyDate : eventDate;
-
             eventTemplate.append('
               <ul class="event--when">
-                <li class="event--date">' + displayDate + '</li>
+                <li class="event--date">' + prettyDate(startTime) + '</li>
               </ul>
             ');
           }
 
           if (eventStart) {
             eventTemplate.find('.event--when').append('
-              <li class="event--time">' + eventStart + '<span class="am-pm">' + eventStartMarker + '</span>&mdash;'
-                                        + eventEnd + '<span class="am-pm">' + eventEndMarker + '</span></li>
+              <li class="event--time">' + eventStart + '&mdash;' + eventEnd + '</li>
             ');
           }
 

@@ -1,5 +1,25 @@
 $(document).ready ->
 
+  # Responsive nav
+  # ----------------------------------------------------------------------------
+
+  nav = responsiveNav(".nav-collapse",
+    animate: true # Boolean: Use CSS3 transitions, true or false
+    transition: 350 # Integer: Speed of the transition, in milliseconds
+    label: "Menu" # String: Label for the navigation toggle
+    insert: "before" # String: Insert the toggle before or after the navigation
+    closeOnNavClick: true # Boolean: Close the navigation when one of the links are clicked
+    openPos: "relative" # String: Position of the opened nav, relative or static
+    navClass: "nav-collapse" # String: Default CSS class. If changed, you need to edit the CSS too!
+    navActiveClass: "js-nav-active" # String: Class that is added to  element when nav is active
+    jsClass: "js" # String: 'JS enabled' class which is added to  element
+    init: -> # Function: Init callback
+
+    open: -> # Function: Open callback
+
+    close: -> # Function: Close callback
+  )
+
   # Hide header when scrolling down
   # ----------------------------------------------------------------------------
 
@@ -43,7 +63,7 @@ $(document).ready ->
 
   nplItem = $('.nav-primary .nav--item:last-child a')
   nplSVG = '<svg class="svg-image svg-address"><use xlink:href="/wp-content/themes/majestic/assets/images/sprite.min.svg#npl"></use></svg>'
-  nplItem.html(nplSVG)
+  nplItem.append(nplSVG)
 
   # Scroll to anchor smoothly
   # ----------------------------------------------------------------------------

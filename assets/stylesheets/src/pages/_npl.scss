@@ -64,19 +64,20 @@
 }
 
 .event--header {
-  border-top: 4px solid $color-primary;
+  background: $gray-lighter;
+  border-bottom: 1px solid $gray-light;
   border-radius: $border-radius-base $border-radius-base 0 0;
   text-align: center;
 
   h3 {
-    color: $green;
     margin: 0;
   }
 }
 
 .event--when {
   @extend .list-plain;
-  background: $gray-lighter;
+  border-bottom: 1px solid $gray-light;
+  color: $gold;
   text-align: center;
 
   @include media($screen-sm-down) {
@@ -102,6 +103,15 @@
 }
 
 .event--description {
+  color: $gray-dark;
   font-size: $font-size-sm;
   margin: 0;
+}
+
+.event--button {
+  display: block;
+  margin-top: $leading;
+
+  @include media($screen-sm-up) {
+  }
 }

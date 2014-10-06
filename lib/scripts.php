@@ -5,8 +5,8 @@
 
 function majestic_scripts() {
   // Put the version here for cache busting
-  $css_version = '1';
-  $js_version = '1';
+  $css_version = '2';
+  $js_version = '2';
 
   $assets = array(
     'css'          => get_template_directory_uri() . '/assets/stylesheets/majestic.min.css',

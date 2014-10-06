@@ -7,7 +7,8 @@
 // Header
 // ----------------------------------------------------------------------------
 
-$header-height: $leading * 1.5;
+$header-height:     $leading * 1.5;
+$menu-breakpoint:   675px;
 
 .banner {
   background: $white;
@@ -37,36 +38,125 @@ $header-height: $leading * 1.5;
   }
 }
 
-.nav-primary {
-  float: right;
-  margin-right: $padding-horiz-base * -1;
+// Primary nav
+// ----------------------------------------------------------------------------
 
-  .active a {
-    color: $black;
-  }
+// Small screens
+.nav-collapse {
+  background: $gray-lighter;
+  border-radius: 0 0 $border-radius-base $border-radius-base;
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  top: -4px; // Why?
+  width: 100%;
 
-  // The NPL link
-  .nav--item:last-child a {
-    margin-left: $padding-horiz-base;
-    transition: $timing-base $easing-base opacity;
+  .nav--item {
+    border-top: 2px solid $gray-light;
+    display: block;
+    float: none;
+    text-align: center;
+    width: 100%;
 
-    svg {
-      display: block;
-      height: 42px;
-      width: 56px;
-      fill: $link-color;
-      transition: fill $timing-base $easing-base;
-
-      &:hover {
-        fill: $link-hover-color;
-      }
+    a:hover {
+      background: $gray-light;
     }
   }
 
-  .nav--item.active:last-child a svg {
-    fill: $black;
+  .active a {
+    color: $gray-darker;
+  }
+
+  .js & {
+    clip: rect(0 0 0 0);
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    zoom: 1;
+  }
+
+  &.opened {
+    max-height: 9999px;
+  }
+
+  .nav--item:last-child a {
+    svg {
+      display: none;
+    }
   }
 }
+
+.disable-pointer-events {
+  pointer-events: none !important;
+}
+
+.nav-toggle {
+  @extend .btn;
+  @extend .btn-primary;
+  float: right;
+  user-select: none;
+  height: $header-height;
+}
+
+@include media(min-width $menu-breakpoint) {
+  .js {
+    .nav-collapse { position: relative; }
+    .nav-collapse.closed { max-height: none; }
+  }
+
+  .nav-toggle { display: none; }
+
+  // Pasted all this here
+  .nav-primary {
+    background: transparent;
+    float: right;
+    margin-right: $padding-horiz-base * -1;
+    width: auto;
+
+    .active a {
+      color: $black;
+    }
+
+    .nav--item {
+      float: left;
+      width: auto;
+    }
+
+    // The NPL link
+    // Make the text invisible and make the SVG absolute so it can cover over
+    // the invisible text;
+    .nav--item:last-child a {
+      color: transparent;
+      margin-left: $padding-horiz-base;
+      overflow: hidden;
+      text-indent: -9999px;
+      transition: $timing-base $easing-base opacity;
+      white-space: nowrap;
+      width: 70px;
+
+      svg {
+        position: absolute;
+        top: 0;
+        display: block;
+        height: 42px;
+        width: 56px;
+        fill: $link-color;
+        transition: fill $timing-base $easing-base;
+
+        &:hover {
+          fill: $link-hover-color;
+        }
+      }
+    }
+
+    .nav--item.active:last-child a svg {
+      fill: $black;
+    }
+  }
+}
+
 
 // Masthead
 // ----------------------------------------------------------------------------
